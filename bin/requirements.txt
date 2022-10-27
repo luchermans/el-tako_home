@@ -1,0 +1,10 @@
+aiofiles==0.6.0
+click==7.1.2
+fastapi==0.63.0
+h11==0.12.0
+pydantic==1.7.3
+pyserial==3.4
+starlette==0.13.6
+typing-extensions==3.7.4.3
+uvicorn==0.13.3
+virtualenv==16.6.0

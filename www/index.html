@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif; background-color: #555;}
+.mobile-container {max-width: 480px;margin: auto;background-color: #555;height: 500px;
+  color: white;border-radius: 10px;}
+
+.topnav {overflow: hidden;background-color: #333;position: relative;}
+.topnav #groups {display: none;}
+.topnav a {color:white;padding: 14px 16px;text-decoration: none;font-size: 17px;display: block;}
+.topnav a.icon {background: #202020;display: block;position: absolute;right: 0;top: 0;}
+.topnav a:hover {background-color: #ddd;color: black;}
+.active {background-color: #202020;color: white;}
+.btn{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;
+  text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;
+  white-space:nowrap;margin: 2px; width: 85%; background-color:#2196F3;border-radius: 8px;
+}
+.btn-on{background-color: #17f361}
+a {color:black;}
+img {max-width: 95%;max-height: 95%;}
+</style>
+</head>
+<body>
+<!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="#home" class="active" id="title" onclick="nav_group()">Home</a>
+  <div id="groups">
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="nav_toggle()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<div style="padding-left:16px" id="takos">
+  <img src='home.jpg'>
+</div>
+
+<script>
+function gEl(id) {return document.getElementById(id);}
+var groups = ['Home', 'Central', 'Living', 'Keuken', 'Boven', 'Kelder'];
+var takos = ['all_off', 'all_up', 'all_down'];
+var gractive = null;
+var tako_api = 'tako-home/api/';
+var home = '';
+
+function nav_toggle() {
+  var x = gEl("groups");
+  x.style.display = (x.style.display === 'block') ? 'none' : 'block';
+}
+
+function init() {
+  var x = '', lnk;
+  var loc = '' + location;
+  fetch(tako_api+'read').then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    takos = data;
+    console.log(takos);
+    x = home = '';
+    for (var gr of Object.keys(takos)) {
+      console.log(gr);
+      lnk = "<a href='#" + gr + "' onclick='nav_group(\"" + gr +"\")'>";
+      x += lnk + gr + "</a>";
+      home += lnk + "<div class='btn'>" + gr + "</div></a>";
+      if (loc.indexOf('#'+gr) >=0)
+        gractive = gr;
+    }
+    gEl('groups').innerHTML = x;
+    nav_group(gractive);
+  }).catch(function() {
+    console.log("Booo");
+  });
+}
+
+function nav_group(gr) {
+  console.log('gr=' + gr);
+  if (gr == null) {
+    gr = 'home';
+    //init();
+  }
+  gractive = gr;
+  gEl('title').innerHTML = 'Home' + '.' + gr;
+  gEl("groups").style.display = 'none';
+  gEl('takos').innerHTML = '';
+  if (gr == 'home') {
+    gEl('takos').innerHTML += "<img src='home.jpg'>"+ home;
+    return;
+  }
+  var tako, on, dim; //draw buttons
+  for (tako of Object.keys(takos[gractive])) {
+    on = takos[gractive][tako]['on'] ? ' btn-on': '';
+    dim = takos[gractive][tako]['dim']
+    if (typeof dim === 'undefined') dim = '';
+    else  dim = "  <font size=-1> " + dim + " %</font>";
+    gEl('takos').innerHTML += "<div class='btn" + on + "' id='" + gractive+ "." +tako + "'>" + tako + dim + "</div><br>";
+  } //add listners
+  for (tako of Object.keys(takos[gractive])) {
+    ['mousedown', 'mouseup', 'touchstart', 'touchend'].forEach(function (ev, i) {
+      gEl(gractive + '.' + tako).addEventListener(ev, btn_action);
+    });
+  }
+}
+
+function btn_action(ev) {
+    console.log(this.id, ev.type);
+    ev.preventDefault();
+    on =  (ev.type == 'mousedown' || ev.type == 'touchstart') ? 1: 0;
+    this.style.opacity  = 1 - on * 0.5;
+    data = {};
+    data['' + this.id] = on;
+    console.log('wrdata', data);
+    fetch(tako_api+'write', {method: 'PUT', body: JSON.stringify(data)}).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log(data);
+    }).catch(function() {
+      console.log("Booo");
+    });
+}
+
+init();
+</script>
+
+</body>
+</html>
