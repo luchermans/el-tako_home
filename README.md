@@ -1,6 +1,6 @@
 # El-tako simple home automation
 
-This is a simple home automation using [Eltako func Series 14](https://www.eltako.com/en/product-category/professional-smart-home-en/series-14-rs485-bus-rail-mounted-devices-for-the-centralised-wireless-building-installation/)
+This is a simple home automation using [Eltako funk Series 14](https://www.eltako.com/en/product-category/professional-smart-home-en/series-14-rs485-bus-rail-mounted-devices-for-the-centralised-wireless-building-installation/)
 
 It simulates a button-press (previous learned by the devices) 
 and reads the device status from the Eltako-bus.
