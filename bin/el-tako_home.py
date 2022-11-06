@@ -240,13 +240,13 @@ def fastapi_run(ini):
     # init fastAPI
     app = FastAPI(title=APPNAME, version=VERSION)
     # app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
-    #                   allow_methods=["*"], allow_headers=["*"])
+    #                    allow_methods=["*"], allow_headers=["*"])
     # IMPORTANT include routes in order (first included is first checked)
     app.include_router(route_tako, prefix=f"{ini['API_BASE']}")
     if 'STATIC_DIR' in ini:   # LAST route to include
         app.mount("/", StaticFiles(directory=ini['STATIC_DIR'], html=True), name="static")
     # run main service
-    uvicorn.run(app, port=ini['HTTP_PORT'])
+    uvicorn.run(app, host='0.0.0.0', port=ini['HTTP_PORT'])
     log(f"ERROR: fastapi stopped: http port:{ini['HTTP_PORT']}")
 
 
