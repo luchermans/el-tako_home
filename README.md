@@ -82,7 +82,7 @@ To find the correct btn.addr and .data use PCT14.
 ```
 ### Install
 - Connect the FAM14 USB (virtual serial port)
-    - turn the FAM14 wheel to 
+    - turn the FAM14 wheel BA to Pos. 4
 - Copy the directories `bin` and `www`
 - set the correct COM port in `bin/el-tako_home.ini`
 - create your `bin/el-tako_home.ini`
@@ -98,7 +98,7 @@ To find the correct btn.addr and .data use PCT14.
 
 ## Refs:
 
-- [Eltako installation manual](https://www.eltako.com/en/the-home-of-innovation/1-series-14-rs485-bus-rail-mounted-devices-for-the-centralised-wireless-building-installation.html)
-- [Eltako wireless telegrams](https://www.eltako.com/en/the-home-of-innovation/t-technical-data-of-the-wireless-actuators-teach-in-list-operating-distances-and-contents-of-eltako-wireless-telegrams.html)
-- [Eltako PCT14](https://www.eltako.com/en/software/software-gfvs-pct14.html)
+- [Eltako installation manual](https://www.eltako.com/fileadmin/downloads/en/_bedienung/Series_14_RS485_Bus_DIN_Rail_Mounted_DevicesSeries_gb.pdf)
+- [Eltako wireless telegrams](https://www.eltako.com/fileadmin/downloads/en/_main_catalogue/Gesamt-Katalog_ChT_gb_highRes.pdf)
+- [Eltako PCT14](https://www.eltako.com/en/software-pct14/)
 - [FastAPI](https://fastapi.tiangolo.com/)
