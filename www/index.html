@@ -119,6 +119,9 @@ function btn_action(ev) {
     }).catch(function() {
       console.log("Booo");
     });
+    if (on == 1) {
+        setTimeout(init, 3500);
+    }
 }
 
 init();
