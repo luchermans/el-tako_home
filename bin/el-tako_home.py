@@ -215,7 +215,7 @@ async def tags_rd(description="read all takos"):
             dik = {'on': 1 if data[6:9] == '09' else 0}
             dik['dim'] = int(data[2:4], 16)
         else:
-            dik['on'] = {'on': 1 if data[0:2] == '70' else 0}
+            dik['on'] = 1 if data[0:2] == '70' else 0
         gr = tk['group']
         if gr in tres:
             tres[gr][tk['name']] = dik
