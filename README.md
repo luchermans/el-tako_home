@@ -3,10 +3,8 @@
 This is a simple home automation using [Eltako funk Series 14](https://www.eltako.com/en/product-category/professional-smart-home-en/series-14-rs485-bus-rail-mounted-devices-for-the-centralised-wireless-building-installation/)
 
 It simulates a button-press and button-release from wired (FTS14-EM) and
-wireless (EnOcean) buttons.  
-Buttons are previous learned into the Eltako devices.  
+wireless (EnOcean) buttons which are previous learned into the Eltako devices.  
 The device status of relais and dimmers are read from the Eltako-bus.
-
 
 ![img/eltako_funk.png](img/eltako_funk.png)
 
@@ -14,21 +12,19 @@ Tested with:
 
 | Device   |                  |
 | -------- | ---------------- |
-| FAM14    | Antenna module   |
-| FTS14EM  | Inputs - buttons |
-| FSR14-4x | Impulse relais   |
-| FSB14    | Roller shutter   |
-| FUD14    | Dimmer           |
-| Enocean  | Wireless button  |
+| [FAM14](https://www.eltako.com/fileadmin/downloads/en/_datasheets/Datasheet_FAM14.pdf)    | Antenna module   |
+| [FTS14EM](https://www.eltako.com/fileadmin/downloads/en/_datasheets/Datasheet_FTS14EM.pdf)  | Inputs - buttons |
+| [FSR14-4x](https://www.eltako.com/fileadmin/downloads/en/_datasheets/Datasheet_FSR14-4x.pdf) | Impulse relais   |
+| [FSB14](https://www.eltako.com/fileadmin/downloads/en/_datasheets/Datasheet_FSB14.pdf)    | Roller shutter   |
+| [FUD14](https://www.eltako.com/fileadmin/downloads/en/_datasheets/Datasheet_FUD14.pdf)    | Dimmer           |
+| [Enocean](https://www.eltako.com/fileadmin/downloads/en/_datasheets/Datasheet_FT55ES-wg.pdf)  | Wireless button  |
 
 
 ## Front-end 
-The front-end [www/](www/)index.html shows every (light) point ordered into groups.  
-Clicking on a point will send the button-press on the RS485 bus, releasing the point
-will send a button-release.
+The front-end [www/](www/)index.html shows every (light-)switch ordered into groups.  
+Clicking on a switch/button will send a button-press, releasing the button will send a button-release.
 
-http://127.0.0.1:8088
-
+http://127.0.0.1:8088  
 ![img/el-tako_home.png](img/el-tako_home.png)
 
 ## Configuration
