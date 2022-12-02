@@ -122,6 +122,8 @@ To find the correct btn.addr and .data use PCT14.
     - `python el-tako_home.py`
 - http://127.0.0.1:8088
 
+## LICENSE
+El-tako is licensed under the [MIT License](LICENSE.txt).
 
 ## TODO
 - security
