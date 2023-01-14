@@ -6,6 +6,7 @@
 
     Version Date  Author	Comment
     V1.00 2021-01-04 LH     initial
+    V1.01 2023-01-13 LH     add switch turn_on, turn_off or toggle
 """
 import os
 import time
@@ -152,7 +153,6 @@ def pack_2tako(pack):
     print(f"\r{addr}  ", end="", flush=True)
 
 
-
 def to_4byte(a):
     if isinstance(a, str):  # a is string
         a = bytes.fromhex(a)
@@ -203,19 +203,24 @@ def tako_run():
 # --------------- WEB service --------------
 route_tako = APIRouter()
 
+def tak_2dik(tk):
+    # return dict {"on": 0/1, "dim": value}
+    data = tk.get('data', "00000000")
+    dik = {}
+    if tk['typ'] == 'FUD14':
+        dik = {'on': 1 if data[6:9] == '09' else 0}
+        dik['dim'] = int(data[2:4], 16)
+    else:
+        dik['on'] = 1 if data[0:2] == '70' else 0
+    return dik
+
 
 @route_tako.get("/read", tags=["tags"], summary="read all takos")
 async def tags_rd(description="read all takos"):
     tres = {}
     for tak in tako:
         tk = tako[tak]
-        data = tk.get('data', "00000000")
-        dik = {}
-        if tk['typ'] == 'FUD14':
-            dik = {'on': 1 if data[6:9] == '09' else 0}
-            dik['dim'] = int(data[2:4], 16)
-        else:
-            dik['on'] = 1 if data[0:2] == '70' else 0
+        dik = tak_2dik(tk)
         gr = tk['group']
         if gr in tres:
             tres[gr][tk['name']] = dik
@@ -234,6 +239,22 @@ async def tags_wr(tags: Dict = Body(..., description="{group.name: 1}", example=
                 on = tk['btn']['data'] if v else b'\x00'*4
                 qmsg.put({'addr': tk['btn']['addr'], 'data': on})
     return tags
+
+
+@route_tako.post("/switch", tags=["tags"], summary="switch action: turn_on, turn_off or toggle")
+async def tags_set(tags: Dict = Body(..., description="{group.name: action}  where action = turn_on, turn_off or toggle", example={"Living.TV": "turn_on"})):
+    for k, v in tags.items():
+        gr, name = k.split('.')
+        for tak in tako:
+            tk = tako[tak]
+            if tk['group'] == gr and tk['name'] == name:
+                set_to = 1 if v == 'turn_on' else 0
+                if v == 'toggle' or set_to != tak_2dik(tk)['on']:
+                    qmsg.put({'addr': tk['btn']['addr'], 'data': tk['btn']['data']})
+                    time.sleep(0.3)
+                    qmsg.put({'addr': tk['btn']['addr'], 'data': b'\x00'*4})
+                # else already this state, Don't do anything
+    return
 
 
 def fastapi_run(ini):
