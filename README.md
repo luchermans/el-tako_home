@@ -74,7 +74,7 @@ Every device has an address which is the key in the json below.
 Set the `typ`e of the device, the `group` and `name` you want to appear in the App.  
 The `all_off` is not a device it only simulates a button press.  
 The `btn` specifies the button address and data to be send on the Eltako func RS485 bus.  
-To find the correct btn.addr and .data use PCT14.
+To find the correct btn.addr and .data use PCT14 (see [PCT14_2json.md](PCT14_2json.md)).
 
 `el-tako_home.json`
 ```
@@ -111,6 +111,7 @@ To find the correct btn.addr and .data use PCT14.
     }
 }
 ```
+
 ### Install
 - Connect the FAM14 USB (virtual serial port)
     - turn the FAM14 wheel BA to Pos. 4
