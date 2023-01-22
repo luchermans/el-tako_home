@@ -46,7 +46,7 @@ So for the first 5 entries below this becomes
         "typ": "FSR14", 
         "group": "Living", "name": "LED4",
         "btn": {"addr": "00001004", "data": "10000000"}
-    },
-
+    }
+}
 ```
 
