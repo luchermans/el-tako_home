@@ -7,7 +7,7 @@ Below a screen-shot of PCT14
     - Addr 1 channel 1 becomses: `00000001`
     - Addr 1 channel 2 becomses: `00000002`
     - Addr 13 channel 3 becomses: `0000000F`
-    - Addr 13 channel 3 becomses: `0000000F`
+    - Addr 13 channel 4 becomses: `00000010`
 - From the ID table function group 2 we found
     - The btn.addr in the column **ID(Hex)**
     - The btn.data is related to the column **Key** for
