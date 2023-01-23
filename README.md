@@ -128,7 +128,7 @@ El-tako is licensed under the [MIT License](LICENSE.txt).
 
 ## TODO
 - security
-- [connect with Google Home Assitant](https://developers.google.com/assistant/smarthome/overview#how_to_build)
+- [connect with Google Home Assitant](https://developers.google.com/assistant/smarthome/overview#how_to_build) in progress ...
 
 ## Refs:
 
