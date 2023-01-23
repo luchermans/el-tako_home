@@ -18,7 +18,7 @@ Below a screen-shot of PCT14
 
 ![img/PCT14.png](img/PCT14.png)
 
-So for the first 5 entries below this becomes
+So for the first 5 entries this becomes
 
 `el-tako_home.json`
 ```
