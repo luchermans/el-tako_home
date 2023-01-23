@@ -1,11 +1,12 @@
 [Back](README.md)
 
-# PCT14 into json
+# PCT14 to el-tako_home.json
 Below a screen-shot of PCT14
 - The device address can be found in column left: **Device list**
   and need to be converted to Hex
     - Addr 1 channel 1 becomses: `00000001`
     - Addr 1 channel 2 becomses: `00000002`
+    - Addr 13 channel 3 becomses: `0000000F`
     - Addr 13 channel 3 becomses: `0000000F`
 - From the ID table function group 2 we found
     - The btn.addr in the column **ID(Hex)**

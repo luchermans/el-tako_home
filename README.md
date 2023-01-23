@@ -68,7 +68,7 @@ In this file the Eltako devices are defined with there corresponding buttons.
 The devices have a name and are ordered in groups.
 
 First you need to program your Eltako devices with addresses and learn the actions on buttons.  
-Use the [Eltako tool PCT14](https://www.eltako.com/en/software/software-gfvs-pct14.html) to do this.
+Use the [Eltako tool PCT14](https://www.eltako.com/en/software-pct14/) to do this.
 
 Every device has an address which is the key in the json below.  
 Set the `typ`e of the device, the `group` and `name` you want to appear in the App.  
